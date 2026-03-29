@@ -360,6 +360,30 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
   .cf-pair,.af{grid-template-columns:1fr;}
   .hero-stats{flex-wrap:wrap;}
 }
+
+/* ── SUCCESS MESSAGE ── */
+.success-msg {
+  background: #f0faf0;
+  border: 1px solid #88cc88;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 1px;
+}
+.success-msg .success-icon { font-size: 2rem; margin-bottom: .6rem; }
+.success-msg h3 { font-family: var(--serif); font-size: 1.1rem; color: #1a5c1a; margin-bottom: .4rem; font-weight: 600; }
+.success-msg p { font-size: .84rem; color: #2a6a2a; line-height: 1.6; }
+.success-msg strong { font-weight: 600; }
+.success-msg.dark { background: rgba(80,180,80,.1); border-color: rgba(80,180,80,.25); }
+.success-msg.dark h3 { color: #90ee90; }
+.success-msg.dark p { color: rgba(160,230,160,.9); }
+/* Smooth scroll offset */
+[id] { scroll-margin-top: 70px; }
+/* Better focus states */
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent) !important; outline-offset: 2px; }
+/* Better mobile tap targets */
+.btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.btn-full { min-height: 48px; }
 </style>
 </head>
 <body>
@@ -405,19 +429,6 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
         <div class="hstat"><div class="hstat-n">50<sup>+</sup></div><div class="hstat-l">Campaigns</div></div>
         <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Platforms</div></div>
       </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hform">
-      <div class="hform-title">Get Your Free Audit</div>
-      <div class="hform-sub">We review your current ads and tell you exactly what's costing you — free, no commitment.</div>
-      <form class="hf" onsubmit="sf(event,'h-ok')">
-        <div class="hf-row"><label>Full Name</label><input type="text" placeholder="Your name" required autocomplete="name"/></div>
-        <div class="hf-row"><label>Phone Number</label><input type="tel" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
-        <div class="hf-row"><label>Email Address</label><input type="email" placeholder="you@company.com" required autocomplete="email"/></div>
-        <button type="submit" class="btn btn-navy">Get Free Audit <span>→</span></button>
-      </form>
-      <div id="h-ok" class="success dark">✓ Received — our team will be in touch within a few hours.</div>
     </div>
   </div>
 </section>
@@ -487,13 +498,19 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
         <p class="subtext" style="margin-top:1rem;">Do you know where your ad money is actually going? Tell us about your current situation and we'll send you a free, honest strategy — no pitch, straight advice.</p>
       </div>
       <div>
-        <form class="mform" onsubmit="sf(event,'m-ok')">
-          <div class="mf-row"><label>Your Name</label><input type="text" placeholder="Full name" required autocomplete="name"/></div>
-          <div class="mf-row"><label>Email Address</label><input type="email" placeholder="you@company.com" required autocomplete="email"/></div>
-          <div class="mf-row"><label>What's not working right now?</label><textarea placeholder="What are you spending on ads — and what results are you seeing?"></textarea></div>
-          <button type="submit" class="btn btn-navy" style="margin-top:1px;">Get Free Strategy <span>→</span></button>
+        <form class="mform" action="https://formspree.io/f/https://formspree.io/f/xjgpywgp" method="POST" onsubmit="submitForm(event,'m-ok','m-spinner')">
+          <input type="hidden" name="_subject" value="🎯 Free Strategy Request — MarketingEssentials"/>
+          <input type="hidden" name="_replyto" value="akashselva03@gmail.com"/>
+          <div class="mf-row"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required autocomplete="name"/></div>
+          <div class="mf-row"><label>Email Address</label><input type="email" name="email" placeholder="you@company.com" required autocomplete="email"/></div>
+          <div class="mf-row"><label>What's not working right now?</label><textarea name="message" placeholder="What are you spending on ads — and what results are you seeing?"></textarea></div>
+          <button type="submit" class="btn btn-navy" style="margin-top:1px;" id="m-btn">Get Free Strategy <span id="m-spinner" style="display:none;">⏳</span><span id="m-arr">→</span></button>
         </form>
-        <div id="m-ok" class="success">✓ Received — we'll send a free strategy within 24 hours.</div>
+        <div id="m-ok" class="success-msg" style="display:none;">
+          <div class="success-icon">✅</div>
+          <h3>Strategy request received!</h3>
+          <p>Thank you for reaching out. We'll review your details and send you a personalised free strategy within <strong>24 hours</strong>.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -693,14 +710,20 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
           <div class="job-sec"><h4>Requirements</h4><ul><li>Any graduate or final-year student</li><li>Working knowledge of Instagram and Facebook</li><li>Good written English communication</li><li>Eagerness to learn — no prior experience required</li></ul></div>
           <div class="apply-wrap">
             <h4>Apply for this Role</h4>
-            <form class="af" onsubmit="sfApply(event,'ao1')">
-              <div class="af-g"><label>Full Name</label><input type="text" placeholder="Your name" required autocomplete="name"/></div>
-              <div class="af-g"><label>Phone</label><input type="tel" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
-              <div class="af-g"><label>Email</label><input type="email" placeholder="you@email.com" required autocomplete="email"/></div>
+            <form class="af" action="https://formspree.io/f/https://formspree.io/f/xjgpywgp" method="POST" onsubmit="submitForm(event,'ao1','sp1')">
+              <input type="hidden" name="_subject" value="💼 Job Application: Social Media Intern — MarketingEssentials"/>
+              <input type="hidden" name="position" value="Social Media Marketing Intern"/>
+              <div class="af-g"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required autocomplete="name"/></div>
+              <div class="af-g"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
+              <div class="af-g"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required autocomplete="email"/></div>
               <div class="af-g"><label>Resume (PDF / Word)</label><input type="file" accept=".pdf,.doc,.docx"/></div>
-              <div class="af-g af-full"><button type="submit" class="btn btn-navy">Apply Now <span>→</span></button></div>
+              <div class="af-g af-full"><button type="submit" class="btn btn-navy" id="btn-ao1">Apply Now <span>→</span></button></div>
             </form>
-            <div id="ao1" class="apply-ok">✓ Application received — we'll be in touch within 3 working days.</div>
+            <div id="ao1" class="success-msg" style="display:none;">
+              <div class="success-icon">🎉</div>
+              <h3>Application submitted!</h3>
+              <p>Thank you for applying for the <strong>Social Media Marketing Intern</strong> position. We've received your application and will be in touch within <strong>3 working days</strong>.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -715,14 +738,20 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
           <div class="job-sec"><h4>Requirements</h4><ul><li>2–5 years of hands-on Google Ads experience</li><li>Proficiency in Google Ads Editor and Google Analytics 4</li><li>Experience with conversion tracking and GTM</li><li>Google Ads certification is a strong advantage</li></ul></div>
           <div class="apply-wrap">
             <h4>Apply for this Role</h4>
-            <form class="af" onsubmit="sfApply(event,'ao2')">
-              <div class="af-g"><label>Full Name</label><input type="text" placeholder="Your name" required autocomplete="name"/></div>
-              <div class="af-g"><label>Phone</label><input type="tel" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
-              <div class="af-g"><label>Email</label><input type="email" placeholder="you@email.com" required autocomplete="email"/></div>
+            <form class="af" action="https://formspree.io/f/https://formspree.io/f/xjgpywgp" method="POST" onsubmit="submitForm(event,'ao2','sp2')">
+              <input type="hidden" name="_subject" value="💼 Job Application: Google Ads Specialist — MarketingEssentials"/>
+              <input type="hidden" name="position" value="Google Ads Specialist"/>
+              <div class="af-g"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required autocomplete="name"/></div>
+              <div class="af-g"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
+              <div class="af-g"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required autocomplete="email"/></div>
               <div class="af-g"><label>Resume (PDF / Word)</label><input type="file" accept=".pdf,.doc,.docx"/></div>
-              <div class="af-g af-full"><button type="submit" class="btn btn-navy">Apply Now <span>→</span></button></div>
+              <div class="af-g af-full"><button type="submit" class="btn btn-navy" id="btn-ao2">Apply Now <span>→</span></button></div>
             </form>
-            <div id="ao2" class="apply-ok">✓ Application received — we'll be in touch within 3 working days.</div>
+            <div id="ao2" class="success-msg" style="display:none;">
+              <div class="success-icon">🎉</div>
+              <h3>Application submitted!</h3>
+              <p>Thank you for applying for the <strong>Google Ads Specialist</strong> position. We've received your application and will be in touch within <strong>3 working days</strong>.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -737,14 +766,20 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
           <div class="job-sec"><h4>Requirements</h4><ul><li>1–4 years of TikTok marketing or e-commerce experience</li><li>Direct TikTok Shop experience strongly preferred</li><li>Understanding of social commerce and live selling</li><li>Results-focused — you track outcomes, not just activity</li></ul></div>
           <div class="apply-wrap">
             <h4>Apply for this Role</h4>
-            <form class="af" onsubmit="sfApply(event,'ao3')">
-              <div class="af-g"><label>Full Name</label><input type="text" placeholder="Your name" required autocomplete="name"/></div>
-              <div class="af-g"><label>Phone</label><input type="tel" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
-              <div class="af-g"><label>Email</label><input type="email" placeholder="you@email.com" required autocomplete="email"/></div>
+            <form class="af" action="https://formspree.io/f/https://formspree.io/f/xjgpywgp" method="POST" onsubmit="submitForm(event,'ao3','sp3')">
+              <input type="hidden" name="_subject" value="💼 Job Application: TikTok Shop Specialist — MarketingEssentials"/>
+              <input type="hidden" name="position" value="TikTok Shop Specialist"/>
+              <div class="af-g"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required autocomplete="name"/></div>
+              <div class="af-g"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 00000" required autocomplete="tel"/></div>
+              <div class="af-g"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required autocomplete="email"/></div>
               <div class="af-g"><label>Resume (PDF / Word)</label><input type="file" accept=".pdf,.doc,.docx"/></div>
-              <div class="af-g af-full"><button type="submit" class="btn btn-navy">Apply Now <span>→</span></button></div>
+              <div class="af-g af-full"><button type="submit" class="btn btn-navy" id="btn-ao3">Apply Now <span>→</span></button></div>
             </form>
-            <div id="ao3" class="apply-ok">✓ Application received — we'll be in touch within 3 working days.</div>
+            <div id="ao3" class="success-msg" style="display:none;">
+              <div class="success-icon">🎉</div>
+              <h3>Application submitted!</h3>
+              <p>Thank you for applying for the <strong>TikTok Shop Specialist</strong> position. We've received your application and will be in touch within <strong>3 working days</strong>.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -771,7 +806,8 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
         <div class="old-note"><strong>Note:</strong> Old email homeessentials@co.in and Bengaluru office are no longer active. Please use the form or contact details above.</div>
       </div>
       <div>
-        <form class="cform" onsubmit="sf(event,'c-ok')">
+        <form class="cform" action="https://formspree.io/f/https://formspree.io/f/xjgpywgp" method="POST" onsubmit="submitForm(event,'c-ok','c-spinner')">
+          <input type="hidden" name="_subject" value="📩 New Contact Form — MarketingEssentials"/>
           <input type="hidden" name="_office" value="11-2 Palakkad Road, Vadavalli, Coimbatore 641041"/>
           <div class="cf-pair">
             <div class="cf-g"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required autocomplete="name"/></div>
@@ -794,9 +830,13 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
             </select>
           </div>
           <div class="cf-g" style="margin-top:1px;"><label>Tell us about your business</label><textarea name="message" placeholder="What does your business do? What's not working with your marketing?"></textarea></div>
-          <button type="submit" class="btn btn-navy" style="margin-top:1px;">Submit — we reply within 24 hours <span>→</span></button>
+          <button type="submit" class="btn btn-navy" style="margin-top:1px;" id="c-btn">Submit — we reply within 24 hours <span id="c-spinner" style="display:none;">⏳</span><span id="c-arr">→</span></button>
         </form>
-        <div id="c-ok" class="success">✓ Message received — our team will be in touch within 24 hours.</div>
+        <div id="c-ok" class="success-msg" style="display:none;">
+          <div class="success-icon">✅</div>
+          <h3>Message received!</h3>
+          <p>Thanks for getting in touch. Our team will review your details and reply within <strong>24 hours</strong> with an honest assessment of your marketing.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -857,12 +897,4 @@ footer h5{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:u
 function toggleNav(){
   const ul=document.querySelector('.nav-links');
   const open=ul.style.display==='flex';
-  if(open){ul.style.display='none';}
-  else{
-    ul.style.cssText='display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(250,249,247,.97);backdrop-filter:blur(10px);padding:.5rem 5%;z-index:299;border-bottom:1px solid #e4e0d9;';
-    ul.querySelectorAll('a').forEach(a=>{a.style.cssText='padding:.85rem 0;height:auto;border-bottom:1px solid #e4e0d9;color:#1c1917;font-size:.8rem;';});
-  }
-}
-function sf(e,id){e.preventDefault();e.target.style.display='none';document.getElementById(id).style.display='block';}
-function sfApply(e,id){e.preventDefault();e.target.style.display='none';document.getElementById(id).style.display='block';}
-fun
+  if(o
